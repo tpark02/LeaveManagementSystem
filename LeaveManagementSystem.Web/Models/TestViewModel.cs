@@ -4,6 +4,6 @@ namespace LeaveManagementSystem.Web.Models;
 
 public class TestViewModel
 {
-       public String Name { get; set; }
+       public string Name { get; set; } = string.Empty;
        public DateTime? DateOfBirth { get; set; }
 }

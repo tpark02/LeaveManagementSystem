@@ -1,6 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using LeaveManagementSystem.Web.Data;
+using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
+using LeaveManagementSystem.Web.MigrationProfiles;
+using System.Reflection.Metadata;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,10 +13,15 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddMaps(typeof(AutoMapperProfile).Assembly); // 👈 this assembly has your Profile
+});
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+
 
 var app = builder.Build();
 
