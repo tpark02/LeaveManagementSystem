@@ -5,6 +5,7 @@ using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using LeaveManagementSystem.Web.MigrationProfiles;
 using System.Reflection.Metadata;
+using LeaveManagementSystem.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,8 @@ builder.Services.AddAutoMapper(cfg =>
 {
     cfg.AddMaps(typeof(AutoMapperProfile).Assembly); // 👈 this assembly has your Profile
 });
+
+builder.Services.AddScoped<ILeaveTypeService, LeaveTypeService>();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
