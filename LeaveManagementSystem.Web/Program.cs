@@ -1,11 +1,12 @@
+using LeaveManagementSystem.Web.Data;
+using LeaveManagementSystem.Web.MigrationProfiles;
+using LeaveManagementSystem.Web.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using LeaveManagementSystem.Web.Data;
-using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using LeaveManagementSystem.Web.MigrationProfiles;
+using System.Collections.Generic;
+using System.Reflection;
 using System.Reflection.Metadata;
-using LeaveManagementSystem.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,12 +21,14 @@ builder.Services.AddAutoMapper(cfg =>
 });
 
 builder.Services.AddScoped<ILeaveTypeService, LeaveTypeService>();
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
-
-
+//var hasher = new PasswordHasher<ApplicationUser>();
+//Console.WriteLine("haser : " + hasher.HashPassword(null, "P@ssword1"));
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

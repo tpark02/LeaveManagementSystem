@@ -1,59 +1,34 @@
-# Build results
-bin/
-obj/
-
-# Rider / VSCode / VS
-.idea/
-.vscode/
-*.suo
+# VS/IDE
+.vs/
 *.user
-*.userosscache
+*.suo
+*.vcxproj.user
 *.sln.docstates
-
-# Logs
-*.log
-
-# OS-specific
-.DS_Store
-Thumbs.db
-
-# ASP.NET Scaffolding
-ScaffoldingReadMe.txt
-
-# Visual Studio files
-*.dbmdl
-*.bak
-*.Backup
-*.BLOB
-*.CoreCompileInputs.cache
-*.dll
-*.exe
-*.pdb
-
-# NuGet
-*.nupkg
-*.snupkg
-project.lock.json
-project.fragment.lock.json
-artifacts/
-.nuget/
-packages/
-*.nuget.props
-*.nuget.targets
-
-# User secrets
-secrets.json
-
-# Entity Framework migrations backup
-Migrations/
-
-# Publish output
-publish/
-wwwroot/lib/
-
-# Resharper
-_ReSharper*/
+*.sw? 
+.idea/
 *.DotSettings.user
 
-# Azure
-.publishsettings
+# Build outputs
+bin/
+obj/
+[Tt]emp/
+[Bb]uild/
+[Ll]og/
+
+# Rider/Resharper
+_ReSharper*/
+*.csproj.user
+
+# OS
+Thumbs.db
+.DS_Store
+
+# ASP.NET Core
+*.db
+app.db
+*.sqlite
+*.sqlite3
+# 구성 파일(비밀 분리 권장)
+appsettings.Development.json
+appsettings.*.local.json
+secrets.json
